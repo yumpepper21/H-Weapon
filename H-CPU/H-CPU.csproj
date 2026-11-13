@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>HCPU</RootNamespace>
+    <AssemblyName>H-CPU</AssemblyName>
+
+    <!-- 强制管理员权限：加载内核驱动（WinRing0/KernelDriver）读取温度、频率必须提权 -->
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+
+    <!-- 应用图标（由上传的 CPU 图案 PNG 转换而来） -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
+
+    <Version>1.0.0</Version>
+    <Product>H-CPU</Product>
+    <AssemblyTitle>H-CPU 硬件监控</AssemblyTitle>
+    <Description>极简 CPU 硬件监控工具（深色主题）</Description>
+
+    <!-- 单文件发布体验：发布命令见 README / 对话说明 -->
+    <SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- LibreHardwareMonitorLib：底层传感器读取（CPU 负载 / 每核温度 / 频率） -->
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.4" />
+    <!-- WMI 查询物理核心数 / 线程数 -->
+    <PackageReference Include="System.Management" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>
